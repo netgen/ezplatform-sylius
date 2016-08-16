@@ -26,3 +26,9 @@ _ezpublishPlatformUIRoutes:
 
 _ezplatformRepositoryFormsRoutes:
     resource: "@EzSystemsRepositoryFormsBundle/Resources/config/routing.yml"
+
+_sylius:
+    resource: "sylius_routing.yml"
+
+_sylius_override:
+    resource: "sylius_routing_override.yml"

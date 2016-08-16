@@ -1,0 +1,21 @@
+# Shop security routes
+
+#sylius_shop_login:
+#    path: /login
+#
+#sylius_shop_login_check:
+#    path: /login-check
+#
+#sylius_shop_logout:
+#    path: /logout
+
+# Admin security routes
+
+#sylius_admin_login:
+#    path: /login
+#
+#sylius_admin_login_check:
+#    path: /login-check
+#
+#sylius_admin_logout:
+#    path: /logout

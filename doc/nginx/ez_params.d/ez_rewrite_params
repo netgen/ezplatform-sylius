@@ -17,5 +17,8 @@ rewrite "^/w3c/p3p\.xml" "/w3c/p3p.xml" break;
 rewrite "^/bundles/(.*)" "/bundles/$1" break;
 rewrite "^/assets/(.*)" "/assets/$1" break;
 
+# Sylius specific rewrite rule
+rewrite "^/media/(.*)" "/media/$1" break;
+
 rewrite "^(.*)$" "/app.php$1" last;
 

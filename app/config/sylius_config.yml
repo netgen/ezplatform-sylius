@@ -1,0 +1,25 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+imports:
+    - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
+    - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+    - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
+    - { resource: "@NetgenEzSyliusBundle/Resources/config/config.yml" }
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/../vendor/sylius/sylius/app/migrations"
+    namespace: Sylius\Migrations
+    table_name: sylius_migrations
+    name: Sylius Migrations
+
+fos_rest:
+    view:
+        formats:
+            json: true
+            xml:  true
+        empty_content: 204
+    format_listener:
+        rules:
+            - { path: '^%ez_sylius.shop_api_path_prefix%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+            - { path: '^/', stop: true }

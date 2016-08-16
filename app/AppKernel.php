@@ -21,6 +21,51 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // Sylius bundles, part 1
+
+            new \Sylius\Bundle\InstallerBundle\SyliusInstallerBundle(),
+            new \Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
+            new \Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
+            new \Sylius\Bundle\CurrencyBundle\SyliusCurrencyBundle(),
+            new \Sylius\Bundle\LocaleBundle\SyliusLocaleBundle(),
+            new \Sylius\Bundle\CartBundle\SyliusCartBundle(),
+            new \Sylius\Bundle\ProductBundle\SyliusProductBundle(),
+            new \Sylius\Bundle\ChannelBundle\SyliusChannelBundle(),
+            new \Sylius\Bundle\VariationBundle\SyliusVariationBundle(),
+            new \Sylius\Bundle\AttributeBundle\SyliusAttributeBundle(),
+            new \Sylius\Bundle\TaxationBundle\SyliusTaxationBundle(),
+            new \Sylius\Bundle\ShippingBundle\SyliusShippingBundle(),
+            new \Sylius\Bundle\PaymentBundle\SyliusPaymentBundle(),
+            new \Sylius\Bundle\MailerBundle\SyliusMailerBundle(),
+            new \Sylius\Bundle\PromotionBundle\SyliusPromotionBundle(),
+            new \Sylius\Bundle\AddressingBundle\SyliusAddressingBundle(),
+            new \Sylius\Bundle\InventoryBundle\SyliusInventoryBundle(),
+            new \Sylius\Bundle\TaxonomyBundle\SyliusTaxonomyBundle(),
+            new \Sylius\Bundle\PricingBundle\SyliusPricingBundle(),
+            new \Sylius\Bundle\ContentBundle\SyliusContentBundle(),
+            new \Sylius\Bundle\UserBundle\SyliusUserBundle(),
+            new \Sylius\Bundle\CustomerBundle\SyliusCustomerBundle(),
+            new \Sylius\Bundle\UiBundle\SyliusUiBundle(),
+            new \Sylius\Bundle\AssociationBundle\SyliusAssociationBundle(),
+            new \Sylius\Bundle\ReviewBundle\SyliusReviewBundle(),
+            new \Sylius\Bundle\CoreBundle\SyliusCoreBundle(),
+            new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
+            new \Sylius\Bundle\GridBundle\SyliusGridBundle(),
+            new \winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
+
+            new \Sonata\BlockBundle\SonataBlockBundle(),
+            new \Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
+            new \Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+            new \Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
+            new \Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+            new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+            new \Symfony\Cmf\Bundle\MediaBundle\CmfMediaBundle(),
+
+            new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
+            new \Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
+
+            // Standard eZ Platform bundles
+
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -46,7 +91,40 @@ class AppKernel extends Kernel
             new EzSystems\PlatformInstallerBundle\EzSystemsPlatformInstallerBundle(),
             new EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle(),
             new EzSystems\EzPlatformSolrSearchEngineBundle\EzSystemsEzPlatformSolrSearchEngineBundle(),
-            new AppBundle\AppBundle(),
+
+            // Sylius bundles, part 2
+
+            new \Sonata\IntlBundle\SonataIntlBundle(),
+            new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
+            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new \FOS\RestBundle\FOSRestBundle(),
+
+            new \FOS\ElasticaBundle\FOSElasticaBundle(),
+            new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new \Payum\Bundle\PayumBundle\PayumBundle(),
+            new \JMS\SerializerBundle\JMSSerializerBundle(),
+            new \JMS\TranslationBundle\JMSTranslationBundle(),
+            new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new \Sylius\Bundle\FixturesBundle\SyliusFixturesBundle(),
+            new \Sylius\Bundle\PayumBundle\SyliusPayumBundle(), // must be added after PayumBundle.
+            new \Sylius\Bundle\ThemeBundle\SyliusThemeBundle(), // must be added after FrameworkBundle
+
+            new \Netgen\Bundle\EzSyliusBundle\NetgenEzSyliusBundle(),
+
+            // Sylius app bundles
+
+            new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
+            new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
+            new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
+
+            // Standard app bundle
+
+            new \AppBundle\AppBundle(),
         );
 
         switch ($this->getEnvironment()) {

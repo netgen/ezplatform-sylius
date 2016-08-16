@@ -1,22 +1,86 @@
 security:
     providers:
-        ezpublish:
-            id: ezpublish.security.user_provider
-#!        in_memory:
-#!            memory: ~
+        # sylius_admin_user_provider:
+            # id: netgen_ez_sylius.admin_user.provider.email_or_name_based
+        # sylius_shop_user_provider:
+            # id: netgen_ez_sylius.shop_user.provider.email_or_name_based
+        ezsylius_user_provider:
+            id: netgen_ez_sylius.user.provider.composite
+
+    encoders:
+        Sylius\Component\User\Model\UserInterface: sha512
 
     firewalls:
+        # Sylius firewalls
+
+        admin:
+            switch_user: true
+            context: sylius
+            pattern: "%ez_sylius.shop_admin_path_prefix%/.*"
+            form_login:
+                provider: ezsylius_user_provider
+                login_path: sylius_admin_login
+                check_path: sylius_admin_login_check
+                failure_path: sylius_admin_login
+                default_target_path: sylius_admin_dashboard
+                use_forward: false
+                use_referer: true
+            logout:
+                path: sylius_admin_logout
+                target: sylius_admin_login
+            anonymous: true
+
+        oauth_token:
+            pattern:  ^%ez_sylius.shop_api_path_prefix%/oauth/v2/token
+            security: false
+
+        api:
+            pattern:    ^%ez_sylius.shop_api_path_prefix%
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  true
+
+        shop:
+            switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
+            context: sylius
+            pattern: "%ez_sylius.shop_path_prefix%/.*"
+            form_login:
+                success_handler: sylius.authentication.success_handler
+                failure_handler: sylius.authentication.failure_handler
+                provider: ezsylius_user_provider
+                login_path: sylius_shop_login
+                check_path: sylius_shop_login_check
+                failure_path: sylius_shop_login
+                default_target_path: sylius_shop_homepage
+                use_forward: false
+                use_referer: true
+            remember_me:
+                key: "%secret%"
+                name: APP_REMEMBER_ME
+                lifetime: 31536000
+                always_remember_me: true
+                remember_me_parameter: _remember_me
+            logout:
+                path: sylius_shop_logout
+                target: sylius_shop_login
+            anonymous: true
+
+        # eZ Platform firewalls
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
 #        ezpublish_rest:
+#            provider: ezsylius_user_provider
 #            pattern: ^/api/ezp/v2
 #            stateless: true
 #            ezpublish_http_basic:
 #                realm: eZ Publish REST API
 
         ezpublish_front:
+            provider: ezsylius_user_provider
+            context: sylius
             pattern: ^/
             anonymous: ~
             ezpublish_rest_session: ~
@@ -26,3 +90,17 @@ security:
 
         default:
             anonymous: ~
+
+    access_control:
+        - { path: ^%ez_sylius.shop_path_prefix%/login.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^%ez_sylius.shop_path_prefix%/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^%ez_sylius.shop_path_prefix%/verify, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "%ez_sylius.shop_path_prefix%/account.*", role: ROLE_USER }
+
+        - { path: ^%ez_sylius.shop_admin_path_prefix%/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^%ez_sylius.shop_admin_path_prefix%/login-check, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "^%ez_sylius.shop_admin_path_prefix%.*", role: ROLE_ADMINISTRATION_ACCESS }
+
+        - { path: ^%ez_sylius.shop_api_path_prefix%, role: ROLE_API_ACCESS }
+
+        - { path: "%ez_sylius.shop_path_prefix%/_partial.*", ip: 127.0.0.1 }

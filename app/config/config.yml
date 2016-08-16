@@ -1,8 +1,10 @@
 imports:
     - { resource: default_parameters.yml }
     - { resource: parameters.yml }
+    - { resource: sylius_parameters.yml }
     - { resource: security.yml }
     - { resource: env/docker.php }
+    - { resource: sylius_config.yml }
 
 # Configuration for Database connection, can have several connections used by eZ Repositories in ezplatform.yml
 doctrine:
@@ -61,7 +63,8 @@ framework:
             enabled: true
             # Note: changing this will break legacy extensions that rely on the default name to alter AJAX requests
             # See https://jira.ez.no/browse/EZP-20783
-            field_name: ezxform_token
+            # Renamed to standard value of "_token" for compatibility with Sylius
+            field_name: _token
     validation:      { enable_annotations: true }
     # Place "eztpl" engine first intentionnally.
     # This is to avoid template name parsing with Twig engine, refusing specific characters

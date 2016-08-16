@@ -1,0 +1,14 @@
+parameters:
+    # EZ PLATFORM & SYLIUS INTEGRATION PARAMETERS
+
+    ez_sylius.shop_path_prefix: /shop
+    ez_sylius.shop_api_path_prefix: /sylius/api
+    ez_sylius.shop_admin_path_prefix: /sylius/admin
+
+    # SYLIUS DEFAULT PARAMETERS
+
+    locale: "%locale_fallback%"
+    currency: USD
+
+    wkhtmltopdf.bin_path: /usr/bin/wkhtmltopdf
+    wkhtmltoimage.bin_path: /usr/bin/wkhtmltoimage
