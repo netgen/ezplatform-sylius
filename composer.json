@@ -1,13 +1,29 @@
 {
-    "name": "ezsystems/ezplatform",
-    "description": "eZ Platform distribution",
-    "homepage": "https://github.com/ezsystems/ezplatform",
+    "name": "netgen/ezplatform-sylius",
+    "description": "eZ Platform distribution coupled with Sylius eCommerce",
+    "homepage": "https://github.com/netgen/ezplatform-sylius",
     "license": "GPL-2.0",
     "type": "project",
     "authors": [
         {
+            "name": "Netgen",
+            "homepage": "http://www.netgenlabs.com"
+        },
+        {
             "name": "eZ dev-team & eZ Community",
             "homepage": "https://github.com/ezsystems/ezplatform/contributors"
+        },
+        {
+            "name": "Paweł Jędrzejewski",
+            "homepage": "http://pjedrzejewski.com"
+        },
+        {
+            "name": "Sylius project",
+            "homepage": "http://sylius.org"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "http://github.com/Sylius/Sylius/contributors"
         }
     ],
     "replace": {
