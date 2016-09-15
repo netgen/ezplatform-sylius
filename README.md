@@ -26,6 +26,10 @@ $ php app/console --env=prod ezsylius:user:connect
 
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
 
+## Access the eZ Platform admin interface
+
+eZ Platform admin interface is available in standard `/ez` route. Use the Sylius admin username and password to login.
+
 ## Access the Sylius shop and Sylius admin interface
 
 If you didn't change any parameters while running `composer install`, Sylius shop will be available at `/shop`, while Sylius admin interface will be available at `/sylius/admin/`. If you don't like these paths, you can change them in `app/config/sylius_parameters.yml`.
