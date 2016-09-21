@@ -10,6 +10,8 @@ Sylius users act as primary users, while eZ Platform users are secondary, you ca
 
 Due to way Sylius users are implemented, it is currently not possible to be logged in with both Sylius admin and Sylius shop users. Use a second browser or incognito mode to login both ways. Hopefully, this will be solved by the time this integration reaches a stable release.
 
+If using legacy administration interface, login with Sylius users will not work, since legacy administration interface does not use Symfony security component. You will need to use standard eZ Publish users to login.
+
 ## Installation instructions
 
 Run the following instructions to install the integration. This will first install Sylius, then install eZ Platform, and finally connect the admin users from Sylius and eZ Platform together.
@@ -27,6 +29,8 @@ $ php app/console --env=prod ezsylius:user:connect
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
 
 ## eZ Publish legacy administration
+
+When installing and activating eZ Publish legacy administration interface, be sure to activate the `EzSyliusBundle` after `EzPublishLegacyBundle`.
 
 To activate support for Sylius Product field type in legacy administration interface, activate `ngsyliusproduct` legacy extension in your INI files, regenerate legacy autoloads and clear legacy caches.
 
