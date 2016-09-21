@@ -32,7 +32,7 @@ To connect the users, when asked, select the `admin` Sylius user type, then ente
 
 When installing and activating eZ Publish legacy administration interface, be sure to activate the `EzSyliusBundle` after `EzPublishLegacyBundle`.
 
-To activate support for Sylius Product field type in legacy administration interface, activate `ngsyliusproduct` legacy extension in your INI files, regenerate legacy autoloads and clear legacy caches.
+To activate support for Sylius Product field type in legacy administration interface, activate `ezsylius` legacy extension in your INI files, regenerate legacy autoloads and clear legacy caches.
 
 ## Access the eZ Platform admin interface
 
