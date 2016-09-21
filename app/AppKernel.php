@@ -114,13 +114,14 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\PayumBundle\SyliusPayumBundle(), // must be added after PayumBundle.
             new \Sylius\Bundle\ThemeBundle\SyliusThemeBundle(), // must be added after FrameworkBundle
 
-            new \Netgen\Bundle\EzSyliusBundle\NetgenEzSyliusBundle(),
-
             // Sylius app bundles
 
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
+
+            // eZ + Sylius integration bundle
+            new \Netgen\Bundle\EzSyliusBundle\NetgenEzSyliusBundle(),
 
             // Standard app bundle
 
