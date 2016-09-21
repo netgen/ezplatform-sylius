@@ -26,6 +26,10 @@ $ php app/console --env=prod ezsylius:user:connect
 
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
 
+## eZ Publish legacy administration
+
+To activate support for Sylius Product field type in legacy administration interface, activate `ngsyliusproduct` legacy extension in your INI files, regenerate legacy autoloads and clear legacy caches.
+
 ## Access the eZ Platform admin interface
 
 eZ Platform admin interface is available in standard `/ez` route. Use the Sylius admin username and password to login.
