@@ -23,15 +23,12 @@ class AppKernel extends Kernel
         $bundles = array(
             // Sylius bundles, part 1
 
-            new \Sylius\Bundle\InstallerBundle\SyliusInstallerBundle(),
             new \Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
             new \Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
             new \Sylius\Bundle\CurrencyBundle\SyliusCurrencyBundle(),
             new \Sylius\Bundle\LocaleBundle\SyliusLocaleBundle(),
-            new \Sylius\Bundle\CartBundle\SyliusCartBundle(),
             new \Sylius\Bundle\ProductBundle\SyliusProductBundle(),
             new \Sylius\Bundle\ChannelBundle\SyliusChannelBundle(),
-            new \Sylius\Bundle\VariationBundle\SyliusVariationBundle(),
             new \Sylius\Bundle\AttributeBundle\SyliusAttributeBundle(),
             new \Sylius\Bundle\TaxationBundle\SyliusTaxationBundle(),
             new \Sylius\Bundle\ShippingBundle\SyliusShippingBundle(),
