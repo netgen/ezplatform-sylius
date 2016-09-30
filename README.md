@@ -28,6 +28,13 @@ $ php app/console --env=prod ezsylius:user:connect
 
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
 
+Once all this is done, you will need to run Gulp to generate assets for Sylius backend interface. From project root, run the following:
+
+```bash
+$ npm install
+$ gulp
+```
+
 ## eZ Publish legacy administration
 
 When installing and activating eZ Publish legacy administration interface, be sure to activate the `EzSyliusBundle` after `EzPublishLegacyBundle`.
