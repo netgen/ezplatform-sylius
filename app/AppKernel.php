@@ -93,7 +93,6 @@ class AppKernel extends Kernel
 
             new \Sonata\IntlBundle\SonataIntlBundle(),
             new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
-            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new \FOS\RestBundle\FOSRestBundle(),
 
             new \FOS\ElasticaBundle\FOSElasticaBundle(),
@@ -114,8 +113,10 @@ class AppKernel extends Kernel
             // Sylius app bundles
 
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
-            new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
+
+            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusApiBundle
+            new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
 
             // eZ + Sylius integration bundle
             new \Netgen\Bundle\EzSyliusBundle\NetgenEzSyliusBundle(),
