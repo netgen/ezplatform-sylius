@@ -16,7 +16,7 @@ security:
         admin:
             switch_user: true
             context: sylius
-            pattern: "%ez_sylius.shop_admin_path_prefix%/.*"
+            pattern: "%ez_sylius.shop_admin_path_prefix%(?:/.*)?$"
             form_login:
                 provider: ezsylius_user_provider
                 login_path: sylius_admin_login
