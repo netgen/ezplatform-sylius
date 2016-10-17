@@ -50,13 +50,10 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\GridBundle\SyliusGridBundle(),
             new \winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
 
-            new \Sonata\BlockBundle\SonataBlockBundle(),
             new \Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
-            new \Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new \Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
             new \Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
             new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
-            new \Symfony\Cmf\Bundle\MediaBundle\CmfMediaBundle(),
 
             new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new \Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
@@ -95,13 +92,10 @@ class AppKernel extends Kernel
             new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new \FOS\RestBundle\FOSRestBundle(),
 
-            new \FOS\ElasticaBundle\FOSElasticaBundle(),
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new \Payum\Bundle\PayumBundle\PayumBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle(),
-            new \JMS\TranslationBundle\JMSTranslationBundle(),
             new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
