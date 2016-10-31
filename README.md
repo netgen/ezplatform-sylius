@@ -17,7 +17,7 @@ If using legacy administration interface, login with Sylius users will not work,
 Run the following instructions to install the integration. This will first install Sylius, then install eZ Platform, and finally connect the admin users from Sylius and eZ Platform together.
 
 ```bash
-$ git clone --branch 1.5-sylius git@github.com:netgen/ezplatform-sylius.git
+$ git clone git@github.com:netgen/ezplatform-sylius.git
 $ cd ezplatform-sylius
 $ composer install
 $ php app/console --env=prod sylius:install
