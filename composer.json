@@ -55,7 +55,7 @@
         "symfony/expression-language": "~2.4",
         "sensio/framework-extra-bundle": "~3.0",
 
-        "sylius/sylius": "^1.0@dev",
+        "sylius/sylius": "^1.0@alpha",
         "netgen/ez-sylius-bundle": "^2.0@dev"
     },
     "require-dev": {

@@ -102,5 +102,3 @@ security:
         - { path: "^%ez_sylius.shop_admin_path_prefix%.*", role: ROLE_ADMINISTRATION_ACCESS }
 
         - { path: ^%ez_sylius.shop_api_path_prefix%, role: ROLE_API_ACCESS }
-
-        - { path: "%ez_sylius.shop_path_prefix%/_partial.*", ip: 127.0.0.1 }
