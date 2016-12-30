@@ -23,6 +23,7 @@ $ composer install
 $ php app/console --env=prod sylius:install
 $ php app/console --env=prod ezplatform:install clean
 $ php app/console --env=prod assetic:dump
+$ php app/console --env=prod assets:install --relative --symlink
 $ php app/console --env=prod ezsylius:user:connect
 ```
 
