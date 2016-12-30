@@ -39,24 +39,16 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\InventoryBundle\SyliusInventoryBundle(),
             new \Sylius\Bundle\TaxonomyBundle\SyliusTaxonomyBundle(),
             new \Sylius\Bundle\PricingBundle\SyliusPricingBundle(),
-            new \Sylius\Bundle\ContentBundle\SyliusContentBundle(),
             new \Sylius\Bundle\UserBundle\SyliusUserBundle(),
             new \Sylius\Bundle\CustomerBundle\SyliusCustomerBundle(),
             new \Sylius\Bundle\UiBundle\SyliusUiBundle(),
-            new \Sylius\Bundle\AssociationBundle\SyliusAssociationBundle(),
             new \Sylius\Bundle\ReviewBundle\SyliusReviewBundle(),
             new \Sylius\Bundle\CoreBundle\SyliusCoreBundle(),
             new \Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new \Sylius\Bundle\GridBundle\SyliusGridBundle(),
             new \winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
 
-            new \Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
-            new \Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
-            new \Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
-            new \Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
-
             new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
-            new \Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
 
             // Standard eZ Platform bundles
 
