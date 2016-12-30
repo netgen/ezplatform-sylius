@@ -12,6 +12,8 @@ Due to way Sylius users are implemented, it is currently not possible to be logg
 
 If using legacy administration interface, login with Sylius users will not work, since legacy administration interface does not use Symfony security component. You will need to use standard eZ Publish users to login.
 
+Currently, only Sylius 1.0 alpha2 is supported, since later versions require Symfony 3.2, while eZ Platform only works with Symfony 2.8.
+
 ## Installation instructions
 
 Run the following instructions to install the integration. This will first install Sylius, then install eZ Platform, and finally connect the admin users from Sylius and eZ Platform together.
