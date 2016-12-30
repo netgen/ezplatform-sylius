@@ -43,10 +43,10 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "tedivm/stash-bundle": "~0.4",
-        "ezsystems/ezpublish-kernel": "~6.6.0",
-        "ezsystems/repository-forms": "~1.4.0",
+        "ezsystems/ezpublish-kernel": "~6.7.0",
+        "ezsystems/repository-forms": "~1.5.0",
         "ezsystems/ezplatform-solr-search-engine": "^1.1",
-        "ezsystems/platform-ui-bundle": "~1.6.0",
+        "ezsystems/platform-ui-bundle": "~1.7.0",
         "ezsystems/ez-support-tools": "~0.1.0",
         "egulias/listeners-debug-command-bundle": "~1.9",
         "white-october/pagerfanta-bundle": "1.0.*",
@@ -54,6 +54,8 @@
         "doctrine/doctrine-bundle": "~1.3",
         "symfony/expression-language": "~2.4",
         "sensio/framework-extra-bundle": "~3.0",
+        "ezsystems/content-on-the-fly-prototype": "~0.1.7",
+        "willdurand/js-translation-bundle": "^2.6",
 
         "sylius/sylius": "^1.0@alpha",
         "netgen/ez-sylius-bundle": "^2.0@dev"
@@ -107,7 +109,7 @@
             }
         ],
         "branch-alias": {
-            "dev-master": "1.5.x-dev"
+            "dev-master": "1.7.x-dev"
         }
     }
 }

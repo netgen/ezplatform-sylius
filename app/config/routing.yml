@@ -27,6 +27,10 @@ _ezpublishPlatformUIRoutes:
 _ezplatformRepositoryFormsRoutes:
     resource: "@EzSystemsRepositoryFormsBundle/Resources/config/routing.yml"
 
+_contentOnTheFly:
+    resource: "@ContentOnTheFlyBundle/Resources/config/routing.yml"
+    prefix:   '%ezpublish_rest.path_prefix%'
+
 _sylius:
     resource: "sylius_routing.yml"
 
