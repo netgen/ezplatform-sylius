@@ -17,7 +17,7 @@ Currently, only Sylius 1.0 alpha2 is supported, since later versions require Sym
 Run the following instructions to install the integration. This will first install Sylius, then install eZ Platform, and finally connect the admin users from Sylius and eZ Platform together.
 
 ```bash
-$ git clone git@github.com:netgen/ezplatform-sylius.git
+$ git clone https://github.com/netgen/ezplatform-sylius.git
 $ cd ezplatform-sylius
 $ composer install
 $ php app/console --env=prod sylius:install
@@ -29,9 +29,10 @@ $ php app/console --env=prod ezsylius:user:connect
 
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
 
-Once all this is done, you will need to run Gulp to generate assets for Sylius backend interface. From project root, run the following:
+Once all this is done, you will need to run Gulp to generate assets for Sylius backend interface. You will need to have `gulp-cli` installed globally (first command) for this to work. From project root, run the following:
 
 ```bash
+$ sudo npm install -g gulp-cli
 $ npm install
 $ gulp
 ```
