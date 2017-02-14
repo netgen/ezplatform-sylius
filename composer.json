@@ -57,9 +57,12 @@
         "ezsystems/content-on-the-fly-prototype": "~0.1.7",
         "willdurand/js-translation-bundle": "^2.6",
 
-        "sylius/sylius": "^1.0@alpha",
+        "sylius/sylius": "dev-revert-symfony3-updated",
         "netgen/ez-sylius-bundle": "^2.0@dev"
     },
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/pjedrzejewski/SyliusSymfony28.git" }
+    ],
     "require-dev": {
         "behat/behat": "~3.0",
         "behat/symfony2-extension": "~2.0",
