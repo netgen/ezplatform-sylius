@@ -15,6 +15,7 @@ doctrine_migrations:
     name: Sylius Migrations
 
 fos_rest:
+    exception: ~
     view:
         formats:
             json: true

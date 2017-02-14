@@ -38,7 +38,6 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\AddressingBundle\SyliusAddressingBundle(),
             new \Sylius\Bundle\InventoryBundle\SyliusInventoryBundle(),
             new \Sylius\Bundle\TaxonomyBundle\SyliusTaxonomyBundle(),
-            new \Sylius\Bundle\PricingBundle\SyliusPricingBundle(),
             new \Sylius\Bundle\UserBundle\SyliusUserBundle(),
             new \Sylius\Bundle\CustomerBundle\SyliusCustomerBundle(),
             new \Sylius\Bundle\UiBundle\SyliusUiBundle(),
@@ -85,12 +84,12 @@ class AppKernel extends Kernel
 
             new \Sonata\IntlBundle\SonataIntlBundle(),
             new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
+            new \JMS\SerializerBundle\JMSSerializerBundle(),
             new \FOS\RestBundle\FOSRestBundle(),
 
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new \Payum\Bundle\PayumBundle\PayumBundle(),
-            new \JMS\SerializerBundle\JMSSerializerBundle(),
             new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -104,7 +103,7 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
 
-            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusApiBundle
+            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusApiBundle.
             new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
 
             // eZ + Sylius integration bundle
