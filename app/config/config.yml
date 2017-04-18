@@ -4,6 +4,7 @@ imports:
     - { resource: sylius_parameters.yml }
     - { resource: security.yml }
     - { resource: env/docker.php }
+    - { resource: env/platformsh.php }
     - { resource: sylius_config.yml }
 
 # Configuration for Database connection, can have several connections used by eZ Repositories in ezplatform.yml

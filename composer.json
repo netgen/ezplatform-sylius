@@ -57,7 +57,7 @@
         "symfony/expression-language": "~2.4",
         "sensio/framework-extra-bundle": "~3.0",
         "ezsystems/content-on-the-fly-prototype": "~0.1.7",
-        "willdurand/js-translation-bundle": "^2.6.3",
+        "willdurand/js-translation-bundle": "^2.6.4",
 
         "sylius/sylius": "dev-revert-symfony3-updated as 1.0",
         "netgen/ez-sylius-bundle": "^2.0@dev"
