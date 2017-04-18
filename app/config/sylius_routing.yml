@@ -1,14 +1,26 @@
 # This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
 
-sylius_shop:
-    resource: "@SyliusShopBundle/Resources/config/routing.yml"
-    prefix: "%ez_sylius.shop_path_prefix%"
-
 sylius_admin:
     resource: "@SyliusAdminBundle/Resources/config/routing.yml"
     prefix: "%ez_sylius.shop_admin_path_prefix%"
 
-sylius_api:
-    resource: "@SyliusApiBundle/Resources/config/routing.yml"
+sylius_admin_api:
+    resource: "@SyliusAdminApiBundle/Resources/config/routing.yml"
     prefix: "%ez_sylius.shop_api_path_prefix%"
+
+sylius_shop:
+    resource: "@SyliusShopBundle/Resources/config/routing.yml"
+    prefix: "%ez_sylius.shop_path_prefix%/{_locale}"
+    requirements:
+        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
+
+sylius_shop_payum:
+    resource: "@SyliusShopBundle/Resources/config/routing/payum.yml"
+    prefix: "%ez_sylius.shop_path_prefix%"
+
+sylius_shop_default_locale:
+    path: "%ez_sylius.shop_path_prefix%"
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.shop.locale_switch:switchAction

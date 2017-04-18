@@ -7,7 +7,17 @@
  * @version //autogentag//
  */
 use eZ\Bundle\EzPublishCoreBundle\Kernel;
+use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
+use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
+use Symfony\Component\DependencyInjection\Loader\IniFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\HttpKernel\Config\FileLocator;
 
 class AppKernel extends Kernel
 {
@@ -83,6 +93,8 @@ class AppKernel extends Kernel
 
             // Sylius bundles, part 2
 
+            new \Sonata\CoreBundle\SonataCoreBundle(),
+            new \Sonata\BlockBundle\SonataBlockBundle(),
             new \Sonata\IntlBundle\SonataIntlBundle(),
             new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle(),
@@ -104,8 +116,8 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
 
-            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusApiBundle.
-            new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
+            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusAdminApiBundle.
+            new \Sylius\Bundle\AdminApiBundle\SyliusAdminApiBundle(),
 
             // eZ + Sylius integration bundle
             new \Netgen\Bundle\EzSyliusBundle\NetgenEzSyliusBundle(),
@@ -131,6 +143,24 @@ class AppKernel extends Kernel
         }
 
         return $bundles;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getContainerLoader(ContainerInterface $container)
+    {
+        $locator = new FileLocator($this, $this->getRootDir() . '/Resources');
+        $resolver = new LoaderResolver([
+            new XmlFileLoader($container, $locator),
+            new YamlFileLoader($container, $locator),
+            new IniFileLoader($container, $locator),
+            new PhpFileLoader($container, $locator),
+            new DirectoryLoader($container, $locator),
+            new ClosureLoader($container),
+        ]);
+
+        return new DelegatingLoader($resolver);
     }
 
     /**

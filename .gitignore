@@ -28,6 +28,8 @@
 /web/.htaccess
 composer.phar
 composer.lock
+ide-twig.json
+yarn.lock
 .buildpath
 .project
 .settings/

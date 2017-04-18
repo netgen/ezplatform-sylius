@@ -16,6 +16,8 @@ Currently, only Sylius 1.0 alpha2 is supported, since later versions require Sym
 
 Run the following instructions to install the integration. This will first install Sylius, then install eZ Platform, and finally connect the admin users from Sylius and eZ Platform together.
 
+Make sure your Sylius default locale is compatible with eZ Platform default locale. `sylius_parameters.yml.dist` file sets the default Sylius locale to `en_GB` due to `eng-GB` (which is converted internally to `en_GB`) being the default eZ Platform locale.
+
 ```bash
 $ git clone https://github.com/netgen/ezplatform-sylius.git
 $ cd ezplatform-sylius
@@ -29,12 +31,11 @@ $ php app/console --env=prod ezsylius:user:connect
 
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
 
-Once all this is done, you will need to run Gulp to generate assets for Sylius backend interface. You will need to have `gulp-cli` installed globally (first command) for this to work. From project root, run the following:
+Once all this is done, you will need to generate assets for Sylius frontend and backend interfaces. You need `yarn` installed for this. Once installed, to generate the assets, run the following from the project root:
 
 ```bash
-$ sudo npm install -g gulp-cli
-$ npm install
-$ gulp
+$ yarn install
+$ yarn run gulp
 ```
 
 ## eZ Publish legacy administration
