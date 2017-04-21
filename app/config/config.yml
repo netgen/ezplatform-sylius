@@ -66,6 +66,7 @@ framework:
             # See https://jira.ez.no/browse/EZP-20783
             # Renamed to standard value of "_token" for compatibility with Sylius
             field_name: _token
+    csrf_protection: true
     validation:      { enable_annotations: true }
     # Place "eztpl" engine first intentionnally.
     # This is to avoid template name parsing with Twig engine, refusing specific characters
