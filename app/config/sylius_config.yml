@@ -14,6 +14,11 @@ doctrine_migrations:
     table_name: sylius_migrations
     name: Sylius Migrations
 
+# Temporary fix to disable aliasing @serializer service to JMS variant
+# TODO: Remove when upgrading to JMS Serializer Bundle 2.0
+jms_serializer:
+    enable_short_alias: false
+
 fos_rest:
     exception: ~
     view:
