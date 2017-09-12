@@ -112,6 +112,8 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\PayumBundle\SyliusPayumBundle(), // must be added after PayumBundle.
             new \Sylius\Bundle\ThemeBundle\SyliusThemeBundle(), // must be added after FrameworkBundle
 
+            new \Symfony\Bundle\WebServerBundle\WebServerBundle(), // allows to run build in web server. Not recommended for prod environment
+
             // Sylius app bundles
 
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),

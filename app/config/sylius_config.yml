@@ -1,6 +1,11 @@
 # This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
 
+parameters:
+    # Changed from default Sylius locale (en_US)
+    # to match eZ Publish default locale
+    locale: en_GB
+
 imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
@@ -13,11 +18,6 @@ doctrine_migrations:
     namespace: Sylius\Migrations
     table_name: sylius_migrations
     name: Sylius Migrations
-
-# Temporary fix to disable aliasing @serializer service to JMS variant
-# TODO: Remove when upgrading to JMS Serializer Bundle 2.0
-jms_serializer:
-    enable_short_alias: false
 
 fos_rest:
     exception: ~

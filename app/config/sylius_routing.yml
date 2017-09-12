@@ -24,3 +24,7 @@ sylius_shop_default_locale:
     methods: [GET]
     defaults:
         _controller: sylius.controller.shop.locale_switch:switchAction
+
+# Liip Imagine routing config is already included by eZ Platform
+# _liip_imagine:
+#     resource: "@LiipImagineBundle/Resources/config/routing.xml"
