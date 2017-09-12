@@ -59,6 +59,7 @@
         "sensio/framework-extra-bundle": "~3.0",
         "ezsystems/content-on-the-fly-prototype": "~0.1.7",
         "willdurand/js-translation-bundle": "^2.6.4",
+        "roave/security-advisories": "dev-master",
 
         "sylius/sylius": "^1.0@beta",
         "netgen/ez-sylius-bundle": "^2.0@dev"

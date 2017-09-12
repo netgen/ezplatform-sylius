@@ -11,7 +11,7 @@
 /app/config/parameters.yml
 /app/config/sylius_parameters.yml
 /app/bootstrap.php.cache
-/doc/docker-compose/entrypoint/*/*.sql
+/doc/docker/entrypoint/*/*.sql
 /node_modules/
 /web/index_treemenu.php
 /web/index_rest.php
@@ -21,6 +21,7 @@
 /web/css/
 /web/js/
 /web/media/
+/web/fonts/
 /web/design
 /web/extension
 /web/share
