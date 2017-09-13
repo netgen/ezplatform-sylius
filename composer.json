@@ -61,7 +61,7 @@
         "willdurand/js-translation-bundle": "^2.6.4",
         "roave/security-advisories": "dev-master",
 
-        "sylius/sylius": "^1.0@beta",
+        "sylius/sylius": "^1.0",
         "netgen/ez-sylius-bundle": "^2.0@dev"
     },
     "require-dev": {
