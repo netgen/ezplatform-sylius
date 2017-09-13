@@ -37,7 +37,7 @@
         "symfony/symfony": "^3.3.8",
         "twig/extensions": "~1.4",
         "symfony/assetic-bundle": "~2.8",
-        "symfony/swiftmailer-bundle": "~2.5",
+        "symfony/swiftmailer-bundle": "^3.0",
         "symfony/monolog-bundle": "~2.12|~3.0",
         "sensio/distribution-bundle": "^3.0.36|^4.0.6|^5.0",
         "sensio/generator-bundle": "^2.3|^3.0",
