@@ -3,7 +3,10 @@ parameters:
     sylius.security.api_regex: "^%ez_sylius.shop_api_path_prefix%"
     sylius.security.shop_regex: "^%ez_sylius.shop_path_prefix%"
 
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
 security:
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         # sylius_admin_user_provider:
             # id: netgen_ez_sylius.admin_user.provider.email_or_name_based
@@ -85,6 +88,7 @@ security:
 
         # eZ Platform firewalls
 
+        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
