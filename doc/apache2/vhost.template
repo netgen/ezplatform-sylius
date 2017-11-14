@@ -98,6 +98,7 @@
         RewriteRule ^/assets/ - [L]
 
         # Sylius specific rewrite rule
+        RewriteCond %{REQUEST_FILENAME} -f
         RewriteRule ^/media/ - [L]
 
         # Additional Assetic rules for environments different from dev,
