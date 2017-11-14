@@ -63,9 +63,6 @@ framework:
     form:
         csrf_protection:
             enabled: true
-            # Note: changing this will break legacy extensions that rely on the default name to alter AJAX requests
-            # See https://jira.ez.no/browse/EZP-20783
-            field_name: ezxform_token
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
     # Place "eztpl" engine first intentionally if you setup use with legacy bridge.
