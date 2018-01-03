@@ -14,9 +14,9 @@ Due to way Sylius users are implemented, it is currently not possible to be logg
 
 Run the following instructions to install the integration. This will first install Sylius, then install eZ Platform, and finally connect the admin users from Sylius and eZ Platform together.
 
-Make sure your default locale is compatible with eZ Platform default locale. `app/config/config.yml` file sets the default locale to `en_GB` due to `eng-GB` (which is converted internally to `en_GB`) being the default eZ Platform locale.
-
 ### IMPORTANT
+
+Always make sure your default locale is compatible with default locale from your eZ Platform database. `app/config/config.yml` file sets the default locale to `en_GB` due to `eng-GB` (which is converted internally to `en_GB`) being the default locale in eZ Platform clean data.
 
 Due to how Sylius install process works and the fact that this integration requires additional database tables, you first need to create the database schema and then run Sylius install command. Due to this, when asked by Sylius install command, DO NOT drop and create the database and its schema (meaning, answer the first two questions NO).
 
