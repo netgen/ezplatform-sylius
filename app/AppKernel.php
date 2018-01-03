@@ -93,7 +93,6 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
 
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Payum\Bundle\PayumBundle\PayumBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
@@ -102,8 +101,6 @@ class AppKernel extends Kernel
             new Sylius\Bundle\FixturesBundle\SyliusFixturesBundle(),
             new Sylius\Bundle\PayumBundle\SyliusPayumBundle(), // must be added after PayumBundle.
             new Sylius\Bundle\ThemeBundle\SyliusThemeBundle(), // must be added after FrameworkBundle
-
-            new Symfony\Bundle\WebServerBundle\WebServerBundle(), // allows to run build in web server. Not recommended for prod environment
 
             // Sylius app bundles
 
