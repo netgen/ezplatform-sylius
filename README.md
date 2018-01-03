@@ -20,11 +20,11 @@ Make sure your Sylius default locale is compatible with eZ Platform default loca
 $ git clone https://github.com/netgen/ezplatform-sylius.git
 $ cd ezplatform-sylius
 $ composer install
-$ php app/console --env=prod sylius:install
-$ php app/console --env=prod ezplatform:install clean
-$ php app/console --env=prod assetic:dump
-$ php app/console --env=prod assets:install --relative --symlink
-$ php app/console --env=prod ezsylius:user:connect
+$ php bin/console --env=prod sylius:install
+$ php bin/console --env=prod ezplatform:install clean
+$ php bin/console --env=prod assetic:dump
+$ php bin/console --env=prod assets:install --relative --symlink
+$ php bin/console --env=prod ezsylius:user:connect
 ```
 
 To connect the users, when asked, select the `admin` Sylius user type, then enter the e-mail address of Sylius admin user (the one you specified while running `sylius:install` command), then enter the username of eZ Platform admin user (usually `admin`).
