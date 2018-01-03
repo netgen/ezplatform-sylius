@@ -1,11 +1,6 @@
 # This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
 
-parameters:
-    # Changed from default Sylius locale (en_US)
-    # to match eZ Publish default locale
-    locale: en_GB
-
 imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }

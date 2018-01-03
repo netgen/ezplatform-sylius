@@ -11,7 +11,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: en_GB
     ezpublish_rest.csrf_token_intention: authenticate
 
 # Configuration for Database connection, can have several connections used by eZ Repositories in ezplatform.yml
