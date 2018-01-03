@@ -3,7 +3,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: sylius_parameters.yml }
     - { resource: security.yml }
-    - { resource: env/docker.php }
+    - { resource: env/generic.php }
     - { resource: env/platformsh.php }
     - { resource: sylius_config.yml }
 
