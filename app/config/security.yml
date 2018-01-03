@@ -93,16 +93,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        ## WARNING
-        ## Until https://jira.ez.no/browse/EZP-22192 is implemented,
-        ## enabling basic auth in REST will prevent PlatformUI from working
-#        ezpublish_rest:
-#            provider: ezsylius_user_provider
-#            pattern: ^/api/ezp/v2
-#            stateless: true
-#            ezpublish_http_basic:
-#                realm: eZ Publish REST API
-
         ezpublish_front:
             provider: ezsylius_user_provider
             context: sylius
@@ -113,8 +103,15 @@ security:
                 require_previous_session: false
             logout: ~
 
-        default:
+        main:
             anonymous: ~
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
 
     access_control:
         - { path: "%sylius.security.admin_regex%/_partial", role: IS_AUTHENTICATED_ANONYMOUSLY, ips: [127.0.0.1, ::1] }

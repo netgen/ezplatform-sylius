@@ -26,10 +26,6 @@ sub vcl_recv {
     // Add a Surrogate-Capability header to announce ESI support.
     set req.http.Surrogate-Capability = "abc=ESI/1.0";
 
-    // Varnish, in its default configuration, sends the X-Forwarded-For header but does not filter out Forwarded header
-    // To be removed in Symfony 3.3
-    unset req.http.Forwarded;
-
     // Ensure that the Symfony Router generates URLs correctly with Varnish
     if (req.http.X-Forwarded-Proto == "https" ) {
         set req.http.X-Forwarded-Port = "443";
