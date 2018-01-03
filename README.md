@@ -16,10 +16,15 @@ Run the following instructions to install the integration. This will first insta
 
 Make sure your Sylius default locale is compatible with eZ Platform default locale. `sylius_parameters.yml.dist` file sets the default Sylius locale to `en_GB` due to `eng-GB` (which is converted internally to `en_GB`) being the default eZ Platform locale.
 
+### IMPORTANT
+
+Due to how Sylius install process works and the fact that this integration requires additional database tables, you first need to create the database schema and then run Sylius install command. Due to this, when asked by Sylius install command, DO NOT drop and create the database and its schema (meaning, answer the first two questions NO).
+
 ```bash
 $ git clone https://github.com/netgen/ezplatform-sylius.git
 $ cd ezplatform-sylius
 $ composer install
+$ php bin/console --env=prod doctrine:schema:screate
 $ php bin/console --env=prod sylius:install
 $ php bin/console --env=prod ezplatform:install clean
 $ php bin/console --env=prod assetic:dump
