@@ -44,7 +44,7 @@ To activate support for Sylius Product field type in legacy administration inter
 
 ## Access the eZ Platform admin interface
 
-eZ Platform admin interface is available in standard `/ez` route. Use the Sylius admin username and password to login.
+eZ Platform admin interface is available in standard `/admin` route. Use the Sylius admin username and password to login.
 
 ## Access the Sylius shop and Sylius admin interface
 
