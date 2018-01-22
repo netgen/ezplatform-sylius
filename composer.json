@@ -2,7 +2,7 @@
     "name": "netgen/ezplatform-sylius",
     "description": "eZ Platform distribution coupled with Sylius eCommerce",
     "homepage": "https://github.com/netgen/ezplatform-sylius",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "type": "project",
     "authors": [
         {
