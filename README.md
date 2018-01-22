@@ -24,7 +24,7 @@ Due to how Sylius install process works and the fact that this integration requi
 $ git clone https://github.com/netgen/ezplatform-sylius.git
 $ cd ezplatform-sylius
 $ composer install
-$ php bin/console --env=prod doctrine:schema:screate
+$ php bin/console --env=prod doctrine:schema:create
 $ php bin/console --env=prod sylius:install
 $ php bin/console --env=prod ezplatform:install clean
 $ php bin/console --env=prod assetic:dump
