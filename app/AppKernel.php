@@ -79,9 +79,12 @@ class AppKernel extends Kernel
             new EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle(),
             new EzSystems\EzPlatformSolrSearchEngineBundle\EzSystemsEzPlatformSolrSearchEngineBundle(),
             new EzSystems\EzPlatformDesignEngineBundle\EzPlatformDesignEngineBundle(),
+            new EzSystems\EzPlatformStandardDesignBundle\EzPlatformStandardDesignBundle(),
+            new EzSystems\EzPlatformRichTextBundle\EzPlatformRichTextBundle(),
             new EzSystems\EzPlatformAdminUiBundle\EzPlatformAdminUiBundle(),
             new EzSystems\EzPlatformAdminUiModulesBundle\EzPlatformAdminUiModulesBundle(),
             new EzSystems\EzPlatformAdminUiAssetsBundle\EzPlatformAdminUiAssetsBundle(),
+            new EzSystems\EzPlatformCronBundle\EzPlatformCronBundle(),
 
             // Sylius bundles, part 2
 
@@ -159,6 +162,11 @@ class AppKernel extends Kernel
     {
         if (!empty($_SERVER['SYMFONY_TMP_DIR'])) {
             return rtrim($_SERVER['SYMFONY_TMP_DIR'], '/') . '/var/cache/' . $this->getEnvironment();
+        }
+
+        // On platform.sh place each deployment cache in own folder to rather cleanup old cache async
+        if ($this->getEnvironment() === 'prod' && ($platformTreeId = getenv('PLATFORM_TREE_ID'))) {
+            return dirname(__DIR__) . '/var/cache/prod/' . $platformTreeId;
         }
 
         return dirname(__DIR__) . '/var/cache/' . $this->getEnvironment();

@@ -20,6 +20,7 @@ services:
     depends_on:
      - install_db
     environment:
+     - COMPOSER_MEMORY_LIMIT
      - SYMFONY_ENV=${SYMFONY_ENV-prod}
      - SYMFONY_DEBUG
      - SYMFONY_CMD
@@ -31,7 +32,7 @@ services:
     # Second chown line:  For dev and behat tests we give a bit extra rights, never do this for prod.
     command: >
       /bin/sh -c "
-      composer install --no-progress --no-interaction --prefer-dist --no-suggest --optimize-autoloader;
+      for i in $$(seq 1 3); do composer install --no-progress --no-interaction --prefer-dist --no-suggest --optimize-autoloader && s=0 && break || s=$$? && sleep 1; done; (exit $$s);
       mkdir -p web/var;
       php /scripts/wait_for_db.php;
       php bin/console ezplatform:install ${INSTALL_EZ_INSTALL_TYPE};

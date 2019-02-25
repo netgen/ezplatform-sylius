@@ -34,8 +34,10 @@ The current Docker Compose files are made to be mixed and matched together for Q
 - base-dev.yml _(alternative to `base-prod.yml`, same applies here if used)_
 - create-dataset.yml _(optional, to be used together with base-prod.yml in order to set up db and vardir)_
 - demo.yml _(optional, to be used together with base-prod.yml in order to set up db and vardir)_
+- dfs.yml _(optional, adds DFS cluster handler. Note that you need to run the migrate script manually, see below)_
 - blackfire.yml _(optional, adds blackfire service and lets you trigger profiling against the setup)_
 - redis.yml _(optional, adds redis service and appends config to app)_
+- redis-session.yml _(optional, stores sessions in a separate redis instance)_
 - varnish.yml _(optional, adds varnish service and appends config to app)_
 - solr.yml _(optional, add solr service and configure app for it)_
 - selenium.yml _(optional, always needs to be last, adds selenium service and appends config to app)_
@@ -131,6 +133,26 @@ docker-compose exec --user www-data app sh -c "php /scripts/wait_for_db.php; php
 docker-compose exec --user www-data app app/console ezplatform:install clean
 ```
 
+### DFS
+
+If you want to use the DFS cluster handler, you'll need to run the migration script manually, after starting the
+containers ( run `docker-compose up -d --force-create` first).
+
+The migration script will copy the binary files in web/var to the nfs mount point ( ./dfsdata ) and add the files'
+metadata to the database. If your are going to run eZ Platform in a cluster you must then ensure ./dfsdata  is a mounted
+nfs share on every node/app container.
+
+```
+# Enter the app container
+docker-compose exec --user www-data app /bin/bash
+
+# Inside app container
+php app/console ezplatform:io:migrate-files --from=default,default --to=dfs,nfs --env=prod
+
+```
+
+Once this is done, you may delete web/var/* if you don't intendt to run the migration scripts ever again.
+
 ### Production use
 
 #### Example: Building app with php image
@@ -205,9 +227,6 @@ image. The downside of this approach is that all eZ Platform code is copied to a
 other containers. This means bigger disk space footprint and longer loading time of the containers.
 It is also more complicated to make this approach work with docker stack so only a docker-compose example is provided.
 
-Note that if you set the environment variable COMPOSE_PROJECT_NAME to a non-default value, you'll need to change the image name in
-doc/docker/Dockerfile-distribution accordingly.
-
 ```sh
 export COMPOSE_FILE=doc/docker/base-prod.yml:doc/docker/create-dataset.yml:doc/docker/distribution.yml
 # If not already done, install setup, and generate database dump :
@@ -220,6 +239,10 @@ docker-compose -f doc/docker/base-prod.yml build --no-cache app
 
 # Optional, only build the images, do not create containers
 docker-compose build --no-cache distribution
+
+# Note that if you set the environment variable COMPOSE_PROJECT_NAME to a non-default value, you'll need to use set the
+# build argument DISTRIBUTION_IMAGE when building the distribution image
+docker-compose build --no-cache --build-arg DISTRIBUTION_IMAGE=customprojectname_app distribution
 
 # Build the "distribution" and dataset images, then start the containers
 docker-compose up -d

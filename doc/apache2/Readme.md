@@ -43,7 +43,7 @@ Example config for Apache 2.4 in prefork mode:
 
         # Set default timeout to 90s, and max upload to 48mb
         TimeOut 90
-        LimitRequestBody 49152
+        LimitRequestBody 50331648
 
         <Directory /var/www/ezinstall/web>
             Options FollowSymLinks
@@ -64,19 +64,22 @@ Example config for Apache 2.4 in prefork mode:
         # Sets the HTTP_AUTHORIZATION header sometimes removed by Apache
         RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+        # Disable .php(3) and other executable extensions in the var directory
+        RewriteRule ^var/.*(?i)\.(php3?|phar|phtml|sh|exe|pl|bin)$ - [F]
+
         # Access to repository images in single server setup
         RewriteRule ^/var/([^/]+/)?storage/images(-versioned)?/.* - [L]
 
-        # Makes it possible to place your favicon at the root `web` directory in your eZ instance.
-        # It will then be served directly.
+        # Makes it possible to placed your favicon and robots.txt at the root of your web folder
         RewriteRule ^/favicon\.ico - [L]
         RewriteRule ^/robots\.txt - [L]
 
-        # The following rule is needed to correctly display assets from eZ / Symfony bundles
+        # The following rules are needed to correctly display bundle and project assets
         RewriteRule ^/bundles/ - [L]
+        RewriteRule ^/assets/ - [L]
 
         # Additional Assetic rules for environments different from dev,
-        # remember to run php app/console assetic:dump --env=prod
+        # remember to run php bin/console assetic:dump --env=prod
         RewriteCond %{ENV:SYMFONY_ENV} !^(dev)
         RewriteRule ^/(css|js|fonts?)/.*\.(css|js|otf|eot|ttf|svg|woff) - [L]
 
@@ -92,7 +95,7 @@ If you do not have an access to use virtualhost config, use the `.htaccess` file
 
     # Set default timeout to 90s, and max upload to 48mb
     TimeOut 90
-    LimitRequestBody 49152
+    LimitRequestBody 50331648
 
     # Disabling MultiViews prevents unwanted negotiation, e.g. "/app" should not resolve
     # to the front controller "/app.php" but be rewritten to "/app.php/app".
@@ -111,6 +114,9 @@ If you do not have an access to use virtualhost config, use the `.htaccess` file
     # Sets the HTTP_AUTHORIZATION header sometimes removed by Apache
     RewriteCond %{HTTP:Authorization} .
     RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Disable .php(3) and other executable extensions in the var directory
+    RewriteRule ^var/.*(?i)\.(php3?|phar|phtml|sh|exe|pl|bin)$ - [F]
 
     # Makes it possible to placed your favicon and robots.txt at the root of your web folder
     RewriteRule ^favicon\.ico - [L]
@@ -133,11 +139,14 @@ If you do not have an access to use virtualhost config, use the `.htaccess` file
 
 Virtual host template
 ---------------------
-This folder contains `vhost.template` file which provides more features you can enable in your virtual host configuration. You may also use this file as a `.htaccess` config. However, you will need to adjust rewrite rules to remove `/` like in the example above.
+This folder contains `vhost.template` for Apache 2.4, and `vhost.2.2.template` for Apache 2.2, both which provides more
+features you can enable in your virtual host configuration. You may also use this file as a `.htaccess` config. However,
+you will need to adjust rewrite rules to remove `/` like in the example above.
 
 *Note: vhost.template uses `mod_setenvif`, adapt it as indicated inline if you can't install it.*
 
-Bash script *(Unix/Linux/OS X)* exists to be able to generate the configuration. To display help text, execute the following from the eZ installation root:
+Bash script *(Unix/Linux/OS X)* exists to be able to generate the configuration. To display help text, execute the
+following from the eZ installation root:
 ```bash
 ./bin/vhost.sh -h
 ```

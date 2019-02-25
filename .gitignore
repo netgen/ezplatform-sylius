@@ -8,6 +8,7 @@
 /bin/
 /build/
 /doc/docker/entrypoint/*/*.sql
+/dfsdata
 /ezpublish_legacy
 /node_modules/
 /phpunit.xml

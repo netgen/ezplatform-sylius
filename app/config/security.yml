@@ -93,6 +93,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        ezpublish_forgot_password:
+            pattern: /user/(forgot-password|reset-password)
+            security: false
+
         ezpublish_front:
             provider: ezsylius_user_provider
             context: sylius

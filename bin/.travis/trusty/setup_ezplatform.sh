@@ -14,18 +14,18 @@
 # Determine eZ Platform Build dir as relative to current script path
 EZPLATFORM_BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../../.." && pwd )"
 
-# Source .env first to make sure we don't override any variables
-. ${EZPLATFORM_BUILD_DIR}/.env
-
 DEPENDENCY_PACKAGE_DIR=$3
 
 if [[ -z "${1}" ]]; then
-    COMPOSE_FILE=$COMPOSE_FILE
+    # If not set, read default from .env file
+    export $(grep "COMPOSE_FILE" ${EZPLATFORM_BUILD_DIR}/.env)
 else
     COMPOSE_FILE=$1
 fi
 
 if [[ -z "${2}" ]]; then
+    # If not set, read default from .env file
+    export $(grep "INSTALL_EZ_INSTALL_TYPE" ${EZPLATFORM_BUILD_DIR}/.env)
     INSTALL_TYPE=$INSTALL_EZ_INSTALL_TYPE
 else
     INSTALL_TYPE=$2
@@ -64,9 +64,12 @@ if [[ -n "${DEPENDENCY_PACKAGE_NAME}" ]]; then
     BASE_PACKAGE_NAME=`basename ${DEPENDENCY_PACKAGE_NAME}`
     echo "> Move ${DEPENDENCY_PACKAGE_DIR} to ${EZPLATFORM_BUILD_DIR}/${BASE_PACKAGE_NAME}"
     mv ${DEPENDENCY_PACKAGE_DIR} ${EZPLATFORM_BUILD_DIR}/${BASE_PACKAGE_NAME}
+    cd ${EZPLATFORM_BUILD_DIR}/${BASE_PACKAGE_NAME}
+
+    # perform full checkout to allow using as local Composer depenency
+    git fetch --unshallow
 
     echo "> Create temporary branch in ${DEPENDENCY_PACKAGE_NAME}"
-    cd ${EZPLATFORM_BUILD_DIR}/${BASE_PACKAGE_NAME}
     # reuse HEAD commit id for better knowledge about what got checked out
     TMP_TRAVIS_BRANCH=tmp_`git rev-parse --short HEAD`
     git checkout -b ${TMP_TRAVIS_BRANCH}

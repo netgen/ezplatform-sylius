@@ -41,47 +41,54 @@
     },
     "require": {
         "php": "^7.1",
-        "symfony/symfony": "^3.4.2",
-        "twig/twig": "^1.0||^2.0",
-        "twig/extensions": "^1.5.0",
-        "symfony/assetic-bundle": "~2.8",
-        "symfony/swiftmailer-bundle": "^3.0",
-        "symfony/monolog-bundle": "^3.1.0",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.5",
-        "sensio/distribution-bundle": "^5.0.19",
-        "incenteev/composer-parameter-handler": "~2.1",
-        "ezsystems/ezpublish-kernel": "~7.0.0",
-        "ezsystems/repository-forms": "~2.0.0",
-        "ezsystems/ezplatform-solr-search-engine": "^1.5",
+        "doctrine/doctrine-bundle": "^1.9.1",
+        "doctrine/orm": "^2.6.3",
         "ezsystems/ez-support-tools": "^0.2.1",
-        "ezsystems/ezplatform-http-cache": "^0.4",
-        "ezsystems/ezplatform-admin-ui": "~1.0.0",
-        "ezsystems/ezplatform-admin-ui-modules": "~1.0.0",
-        "ezsystems/ezplatform-admin-ui-assets": "~1.0.0",
-        "ezsystems/ezplatform-design-engine": "^1.1",
-        "knplabs/knp-menu-bundle": "^2.1",
-        "sensio/framework-extra-bundle": "^3.0.2",
-        "willdurand/js-translation-bundle": "^2.6.4",
-        "oneup/flysystem-bundle": "^2.0",
-        "friendsofsymfony/jsrouting-bundle": "^1.4",
-        "white-october/pagerfanta-bundle": "^1.1",
-        "roave/security-advisories": "dev-master",
-        "leafo/scssphp": "^0.7",
+        "ezsystems/ezplatform-admin-ui": "~1.4.0",
+        "ezsystems/ezplatform-admin-ui-assets": "~3.2.0",
+        "ezsystems/ezplatform-admin-ui-modules": "~1.4.0",
+        "ezsystems/ezplatform-cron": "^2.0.0",
+        "ezsystems/ezplatform-design-engine": "^2.0.0",
+        "ezsystems/ezplatform-http-cache": "^0.8.0",
+        "ezsystems/ezplatform-richtext": "^1.0.0",
+        "ezsystems/ezplatform-solr-search-engine": "^1.5.5",
+        "ezsystems/ezplatform-standard-design": "^0.1.0",
+        "ezsystems/ezpublish-kernel": "~7.4.0",
+        "ezsystems/repository-forms": "~2.4.0",
+        "friendsofsymfony/jsrouting-bundle": "^1.6.3",
+        "incenteev/composer-parameter-handler": "^2.1.3",
+        "knplabs/knp-menu-bundle": "^2.2.1",
+        "leafo/scssphp": "^0.7.7",
+        "sensio/distribution-bundle": "^5.0.23",
+        "sensiolabs/security-checker": "^5.0",
+        "symfony/assetic-bundle": "^2.8.2",
+        "symfony/monolog-bundle": "^3.3.1",
+        "symfony/swiftmailer-bundle": "^3.2.4",
+        "symfony/symfony": "^3.4.18",
+        "symfony/thanks": "^1.1.0",
+        "twig/extensions": "^1.5.3",
+        "twig/twig": "^2.6.2",
+        "white-october/pagerfanta-bundle": "^1.2.2",
+        "willdurand/js-translation-bundle": "^2.6.6",
 
-        "sylius/sylius": "^1.0.7",
+        "sylius/sylius": "^1.4",
         "netgen/ez-sylius-bundle": "^2.0@dev"
     },
     "require-dev": {
-        "behat/behat": "~3.2",
-        "behat/symfony2-extension": "~2.0",
-        "behat/mink-extension": "~2.0",
-        "behat/mink-goutte-driver": "~1.0",
-        "behat/mink-selenium2-driver": "~1.0",
-        "ezsystems/behatbundle": "^6.5",
-        "phpunit/phpunit": "^6.4",
-        "sensio/generator-bundle": "~3.1",
-        "symfony/phpunit-bridge": "~3.2"
+        "behat/behat": "^3.5.0",
+        "behat/mink-extension": "^2.3.1",
+        "behat/mink-goutte-driver": "^1.2.1",
+        "behat/mink-selenium2-driver": "^1.3.1",
+        "behat/symfony2-extension": "^2.1.5",
+        "bex/behat-screenshot": "^1.2.7",
+        "ezsystems/behat-screenshot-image-driver-cloudinary": "^1.1.0",
+        "ezsystems/behatbundle": "^6.5.4",
+        "phpunit/phpunit": "^6.5.13",
+        "sensio/generator-bundle": "^3.1.7",
+        "symfony/phpunit-bridge": "^3.4.18"
+    },
+    "conflict": {
+        "doctrine/dbal": "2.7.0"
     },
     "scripts": {
         "symfony-scripts": [
@@ -89,7 +96,9 @@
             "eZ\\Bundle\\EzPublishCoreBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "@php bin/console assetic:dump"
+            "@php bin/console bazinga:js-translation:dump --merge-domains",
+            "@php bin/console assetic:dump",
+            "@php bin/security-checker security:check"
         ],
         "post-install-cmd": [
             "@symfony-scripts"
@@ -99,10 +108,14 @@
         ],
         "post-create-project-cmd": [
             "eZ\\Bundle\\EzPublishCoreBundle\\Composer\\ScriptHandler::installWelcomeText"
+        ],
+        "ezplatform-install": [
+            "@php bin/console ezplatform:install clean"
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "preferred-install": "dist"
     },
     "extra": {
         "symfony-app-dir": "app",
@@ -121,7 +134,7 @@
             }
         ],
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "2.4.x-dev"
         }
     }
 }

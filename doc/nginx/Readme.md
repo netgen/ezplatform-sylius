@@ -42,7 +42,7 @@ Example config:
         root /var/www/ezinstall/web;
 
         # Additional Assetic rules for environments different from dev,
-        # remember to run php app/console assetic:dump --env=prod
+        # remember to run php bin/console assetic:dump --env=prod
         # and make sure to comment these out in "dev" environment.
         include ez_params.d/ez_prod_rewrite_params;
 
@@ -68,6 +68,11 @@ Example config:
                 # Make sure to comment the "ez_params.d/ez_prod_rewrite_params" include above in dev.
                 # Defaults to "prod" if omitted
                 fastcgi_param SYMFONY_ENV prod;
+            }
+
+            # Disable .php(3) and other executable extensions in the var directory
+            location ~ ^/var/.*(?i)\.(php3?|phar|phtml|sh|exe|pl|bin)$ {
+                return 403;
             }
         }
 
