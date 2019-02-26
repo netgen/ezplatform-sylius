@@ -1,5 +1,6 @@
 imports:
     - { resource: config.yml }
+    - { resource: sylius_config_prod.yml }
     - { resource: ezplatform_prod.yml }
 
 # Example below would make sure some of the symfony caches are written to apc / redis instead of disk
