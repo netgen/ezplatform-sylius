@@ -38,7 +38,7 @@ Once all this is done, you will need to generate assets for Sylius frontend and 
 
 ```bash
 $ yarn install
-$ yarn run gulp
+$ yarn build
 ```
 
 ## eZ Publish legacy administration
