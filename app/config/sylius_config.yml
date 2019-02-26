@@ -2,20 +2,45 @@
 # (c) Paweł Jędrzejewski
 
 imports:
-    - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
-    - { resource: "@NetgenEzSyliusBundle/Resources/config/config.yml" }
+    - { resource: '@SyliusCoreBundle/Resources/config/app/config.yml' }
+    - { resource: '@SyliusAdminBundle/Resources/config/app/config.yml' }
+    - { resource: '@SyliusAdminApiBundle/Resources/config/app/config.yml' }
+    - { resource: '@SyliusShopBundle/Resources/config/app/config.yml' }
+    - { resource: '@NetgenEzSyliusBundle/Resources/config/config.yml' }
+
+parameters:
+    sylius_core.public_dir: '%kernel.project_dir%/web'
+
+# Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
+# See the official DoctrineExtensions documentation for more details: https://github.com/Atlantic18/DoctrineExtensions/tree/master/doc/
+stof_doctrine_extensions:
+    default_locale: '%locale%'
+
+sonata_core:
+    form:
+        mapping:
+            enabled: false
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root: '%kernel.project_dir%/web'
+                cache_prefix: 'media/cache'
+
+jms_serializer:
+    visitors:
+        xml:
+            format_output: '%kernel.debug%'
 
 doctrine_migrations:
-    dir_name: "%kernel.root_dir%/../vendor/sylius/sylius/app/migrations"
+    dir_name: '%kernel.project_dir%/vendor/sylius/sylius/app/migrations'
     namespace: Sylius\Migrations
     table_name: sylius_migrations
     name: Sylius Migrations
 
 fos_rest:
-    exception: ~
+    exception: true
     view:
         formats:
             json: true
@@ -23,5 +48,5 @@ fos_rest:
         empty_content: 204
     format_listener:
         rules:
-            - { path: '^%ez_sylius.shop_api_path_prefix%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+            - { path: '^%ez_sylius.shop_api_path_prefix%/.*', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
             - { path: '^/', stop: true }
