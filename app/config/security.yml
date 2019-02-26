@@ -25,6 +25,7 @@ security:
             switch_user: true
             context: sylius
             pattern: "%sylius.security.admin_regex%"
+            provider: ezsylius_user_provider
             form_login:
                 provider: ezsylius_user_provider
                 login_path: sylius_admin_login
@@ -37,8 +38,8 @@ security:
                 csrf_parameter: _csrf_admin_security_token
                 csrf_token_id: admin_authenticate
             remember_me:
-                secret: "%secret%"
-                path: "%ez_sylius.shop_admin_path_prefix%"
+                secret: '%kernel.secret%'
+                path: '%ez_sylius.shop_admin_path_prefix%'
                 name: APP_ADMIN_REMEMBER_ME
                 lifetime: 31536000
                 remember_me_parameter: _remember_me
@@ -53,6 +54,7 @@ security:
 
         api:
             pattern: "%sylius.security.api_regex%/.*"
+            provider: ezsylius_user_provider
             fos_oauth:  true
             stateless:  true
             anonymous:  true
@@ -61,6 +63,7 @@ security:
             switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
             context: sylius
             pattern: "%sylius.security.shop_regex%"
+            provider: ezsylius_user_provider
             form_login:
                 success_handler: sylius.authentication.success_handler
                 failure_handler: sylius.authentication.failure_handler
@@ -75,7 +78,7 @@ security:
                 csrf_parameter: _csrf_shop_security_token
                 csrf_token_id: shop_authenticate
             remember_me:
-                secret: "%secret%"
+                secret: '%kernel.secret%'
                 name: APP_SHOP_REMEMBER_ME
                 lifetime: 31536000
                 remember_me_parameter: _remember_me
