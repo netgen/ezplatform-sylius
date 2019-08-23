@@ -13,6 +13,9 @@ parameters:
     database_name: '%env(DATABASE_NAME)%'
     database_user: '%env(DATABASE_USER)%'
     database_password: '%env(DATABASE_PASSWORD)%'
+    database_charset: '%env(DATABASE_CHARSET)%'
+    # collation currently has effect on MySQL only
+    database_collation: '%env(DATABASE_COLLATION)%'
 
     # Setting for mail system, used by SwiftMailer
     mailer_host: '%env(MAILER_HOST)%'
@@ -68,7 +71,8 @@ parameters:
 
     env(LOG_PATH): "%kernel.logs_dir%/%kernel.environment%.log"
 
-    env(CACHE_POOL): "cache.app"
+    # NOTE: For Windows usage you can use Symfony's `cache.app`, for eZ provided services see: app/config/cache_pool/*
+    env(CACHE_POOL): "cache.tagaware.filesystem"
 
     env(CACHE_DSN): localhost
 
@@ -84,6 +88,9 @@ parameters:
     env(RECOMMENDATIONS_LICENSE_KEY):   ~
     env(PUBLIC_SERVER_URI):             ~
 
+    # set here for BC reasons, change them in parameters.yml
+    env(DATABASE_CHARSET): utf8mb4
+    env(DATABASE_COLLATION): utf8mb4_unicode_520_ci
 
     # Compile time handlers
     ## These are defined at compile time, and hence can't be set at runtime using env()
@@ -107,3 +114,7 @@ parameters:
 
     # Admin siteaccess group name
     admin_group_name: admin_group
+
+    # Varnish invalidation/purge token (for use on platform.sh, eZ Platform Cloud and other places you can't use IP for ACL)
+    varnish_invalidate_token: '%env(HTTPCACHE_VARNISH_INVALIDATE_TOKEN)%'
+    env(HTTPCACHE_VARNISH_INVALIDATE_TOKEN): ~

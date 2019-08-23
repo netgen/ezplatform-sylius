@@ -56,6 +56,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Symfony\WebpackEncoreBundle\WebpackEncoreBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Dependencies
@@ -77,15 +78,22 @@ class AppKernel extends Kernel
             new eZ\Bundle\EzPublishRestBundle\EzPublishRestBundle(),
             new EzSystems\EzSupportToolsBundle\EzSystemsEzSupportToolsBundle(),
             new EzSystems\PlatformInstallerBundle\EzSystemsPlatformInstallerBundle(),
+            new EzSystems\DoctrineSchemaBundle\DoctrineSchemaBundle(),
             new EzSystems\RepositoryFormsBundle\EzSystemsRepositoryFormsBundle(),
             new EzSystems\EzPlatformSolrSearchEngineBundle\EzSystemsEzPlatformSolrSearchEngineBundle(),
             new EzSystems\EzPlatformDesignEngineBundle\EzPlatformDesignEngineBundle(),
             new EzSystems\EzPlatformStandardDesignBundle\EzPlatformStandardDesignBundle(),
             new EzSystems\EzPlatformRichTextBundle\EzPlatformRichTextBundle(),
             new EzSystems\EzPlatformAdminUiBundle\EzPlatformAdminUiBundle(),
+            new EzSystems\EzPlatformUserBundle\EzPlatformUserBundle(),
             new EzSystems\EzPlatformAdminUiModulesBundle\EzPlatformAdminUiModulesBundle(),
             new EzSystems\EzPlatformAdminUiAssetsBundle\EzPlatformAdminUiAssetsBundle(),
             new EzSystems\EzPlatformCronBundle\EzPlatformCronBundle(),
+            new EzSystems\EzPlatformEncoreBundle\EzSystemsEzPlatformEncoreBundle(),
+            new EzSystems\EzPlatformGraphQL\EzSystemsEzPlatformGraphQLBundle(),
+            new EzSystems\EzPlatformMatrixFieldtypeBundle\EzPlatformMatrixFieldtypeBundle(),
+            // OverblogGraphQLBundle has to be loaded after EzSystemsEzPlatformGraphQLBundle
+            new Overblog\GraphQLBundle\OverblogGraphQLBundle(),
 
             // Sylius bundles, part 2
 
@@ -134,6 +142,7 @@ class AppKernel extends Kernel
                 $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
                 $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
                 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+                $bundles[] = new Overblog\GraphiQLBundle\OverblogGraphiQLBundle();
         }
 
         return $bundles;
@@ -164,11 +173,6 @@ class AppKernel extends Kernel
     {
         if (!empty($_SERVER['SYMFONY_TMP_DIR'])) {
             return rtrim($_SERVER['SYMFONY_TMP_DIR'], '/') . '/var/cache/' . $this->getEnvironment();
-        }
-
-        // On platform.sh place each deployment cache in own folder to rather cleanup old cache async
-        if ($this->getEnvironment() === 'prod' && ($platformTreeId = getenv('PLATFORM_TREE_ID'))) {
-            return dirname(__DIR__) . '/var/cache/prod/' . $platformTreeId;
         }
 
         return dirname(__DIR__) . '/var/cache/' . $this->getEnvironment();

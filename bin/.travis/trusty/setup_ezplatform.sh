@@ -8,7 +8,7 @@
 #
 # Arguments:
 # - ${COMPOSE_FILE}           compose file(s) paths
-# - ${INSTALL_TYPE}           optional, eZ Platform install type ("clean") will take from .env if not set
+# - ${INSTALL_TYPE}           *Not in use*
 # - ${DEPENDENCY_PACKAGE_DIR} optional, directory containing existing eZ Platform dependency package
 
 # Determine eZ Platform Build dir as relative to current script path
@@ -21,14 +21,6 @@ if [[ -z "${1}" ]]; then
     export $(grep "COMPOSE_FILE" ${EZPLATFORM_BUILD_DIR}/.env)
 else
     COMPOSE_FILE=$1
-fi
-
-if [[ -z "${2}" ]]; then
-    # If not set, read default from .env file
-    export $(grep "INSTALL_EZ_INSTALL_TYPE" ${EZPLATFORM_BUILD_DIR}/.env)
-    INSTALL_TYPE=$INSTALL_EZ_INSTALL_TYPE
-else
-    INSTALL_TYPE=$2
 fi
 
 if [[ -n "${DEPENDENCY_PACKAGE_DIR}" ]]; then
@@ -76,31 +68,30 @@ if [[ -n "${DEPENDENCY_PACKAGE_NAME}" ]]; then
 
     # go back to previous directory
     cd -
-fi
 
-echo "> Start docker containers specified by ${COMPOSE_FILE}"
-docker-compose up -d
-
-if [[ -n "${DEPENDENCY_PACKAGE_NAME}" ]]; then
     # use local checkout path relative to docker volume
     echo "> Make composer use tested dependency local checkout ${TMP_TRAVIS_BRANCH} of ${BASE_PACKAGE_NAME}"
-    docker-compose exec app sh -c "composer config repositories.localDependency git /var/www/${BASE_PACKAGE_NAME}"
+    composer config repositories.localDependency git /var/www/${BASE_PACKAGE_NAME}
 
     echo "> Require ${DEPENDENCY_PACKAGE_NAME}:dev-${TMP_TRAVIS_BRANCH} as ${BRANCH_ALIAS}"
-    if ! docker-compose exec app sh -c "composer require --no-update '${DEPENDENCY_PACKAGE_NAME}:dev-${TMP_TRAVIS_BRANCH} as ${BRANCH_ALIAS}'"; then
+    if ! composer require --no-update "${DEPENDENCY_PACKAGE_NAME}:dev-${TMP_TRAVIS_BRANCH} as ${BRANCH_ALIAS}"; then
         echo 'Failed requiring dependency' >&2
         exit 3
     fi
+
 fi
 
-echo '> Run composer install inside docker app container'
-docker-compose exec app sh -c 'composer install --no-suggest --no-progress --no-interaction --prefer-dist --optimize-autoloader'
+echo "> Install DB and dependencies"
+docker-compose -f doc/docker/install-dependencies.yml up --abort-on-container-exit
+
+echo "> Start docker containers specified by ${COMPOSE_FILE}"
+docker-compose up -d
 
 # for behat builds to work
 echo '> Change ownership of files inside docker container'
 docker-compose exec app sh -c 'chown -R www-data:www-data /var/www'
 
 echo '> Install data'
-docker-compose exec --user www-data app sh -c "php /scripts/wait_for_db.php; php bin/console ezplatform:install ${INSTALL_TYPE}"
+docker-compose exec --user www-data app sh -c "php /scripts/wait_for_db.php; composer ezplatform-install"
 
 echo '> Done, ready to run tests'

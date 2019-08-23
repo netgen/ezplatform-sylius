@@ -36,7 +36,11 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^4.0.0",
     "upath": "^1.1.0",
-    "yargs": "^6.4.0"
+    "yargs": "^6.4.0",
+    "@babel/preset-react": "^7.0.0",
+    "@symfony/webpack-encore": "^0.22.4",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.0.1"
   },
   "scripts": {
     "build": "gulp build",
